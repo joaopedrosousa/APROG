@@ -3,6 +3,9 @@
 #include <time.h>    // necessário para o funcionamento de time()
 #include <string.h>
 
+#define nTotalCartas (80)
+#define nJogadores (6)
+
 /// DEFINIÇÃO ESTRUTURAS NECESSÁRIAS E TIPOS ASSOCIADOS
 
 /// Carta
@@ -48,7 +51,18 @@ void ordenarCartas(t_carta b[],int n)
 }
 
 /// Função para baralhar o baralho de cartas
+void baralharCartas(t_carta baralho[], int nCartas){
 
+    int  posicao, random;
+    t_carta temp;
+    for(posicao=1; posicao<=nCartas; posicao++){
+            random = rand()%(posicao+1);
+
+            temp = baralho[posicao];
+            baralho[posicao] = baralho[random];
+            baralho[random] = baralho[posicao];
+    }
+}
 
 /// FUNÇÕES DE INICIALIZAÇÃO DO BARALHO E DO VETOR DE JOGADORES
 
@@ -142,15 +156,15 @@ int main()
     t_jogador vJogadores[1+10];              // vetor dos jogadores
     t_carta   b1[1+40], b2[1+40], baralho[1+80];
     t_jogador monte, mesa;
-    int nTotalCartas=80;
-    int nJogadores=6;
+//    int nTotalCartas;
+//    int  nJogadores;
 
 
     criarJogadores(vJogadores);
     criarBaralho(b1);
     criarBaralho(b2);
     //juntarBaralhos(b1,b2,baralho);
-    //baralharCartas(baralho,nTotalCartas);
+    baralharCartas(baralho,nTotalCartas);
 
     ///Acrescentar as chamadas às funções desenvolvidas, para fazer funcionar o Jogo do UNO
 
