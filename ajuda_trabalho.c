@@ -79,7 +79,14 @@ void criarBaralho(t_carta b[])
 }
 
 /// Função que junta dois baralhos de 40 cartas num único vetor com 80 cartas
-
+void juntarBaralhos(int *baralho1, int *baralho2, int *baralho) {
+  for (int i = 0; i < (2/nTotalCartas); i++) {
+    baralho[i] = baralho1[i];
+  }
+  for (int i = 0; i < (2/nTotalCartas); i++) {
+    baralho[(2/nTotalCartas) + i] = baralho2[i];
+  }
+}
 
 /// cria 10 jogadores: nomes, nCartas=0
 void criarJogadores(t_jogador vJogadores[])
