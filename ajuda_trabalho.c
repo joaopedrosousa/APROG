@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>    // necessário para o funcionamento de time()
 #include <string.h>
+#include "winColors.h"
 
 #define nTotalCartas (80)
 #define nJogadores (6)
@@ -80,78 +81,68 @@ void criarBaralho(t_carta b[])
 
 /// Função que junta dois baralhos de 40 cartas num único vetor com 80 cartas
 void juntarBaralhos(int *baralho1, int *baralho2, int *baralho) {
-  for (int i = 0; i < (2/nTotalCartas); i++) {
+  for (int i = 0; i < 40; i++) {
     baralho[i] = baralho1[i];
   }
-  for (int i = 0; i < (2/nTotalCartas); i++) {
-    baralho[(2/nTotalCartas) + i] = baralho2[i];
+  for (int i = 0; i < 40; i++) {
+    baralho[40 + i] = baralho2[i];
   }
 }
 
 /// cria 10 jogadores: nomes, nCartas=0
 void criarJogadores(t_jogador vJogadores[])
 {
-    strcpy(vJogadores[ 1].nome," António ");
-    strcpy(vJogadores[ 2].nome," Beatriz ");
-    strcpy(vJogadores[ 3].nome," Celeste ");
-    strcpy(vJogadores[ 4].nome," Daniela ");
-    strcpy(vJogadores[ 5].nome," Eduardo ");
-    strcpy(vJogadores[ 6].nome," Fabiana ");
-    strcpy(vJogadores[ 7].nome," Gonçalo ");
-    strcpy(vJogadores[ 8].nome," Hilário ");
-    strcpy(vJogadores[ 9].nome," Isabela ");
+    strcpy(vJogadores[1].nome," Antonio ");
+    strcpy(vJogadores[2].nome," Beatriz ");
+    strcpy(vJogadores[3].nome," Celeste ");
+    strcpy(vJogadores[4].nome," Daniela ");
+    strcpy(vJogadores[5].nome," Eduardo ");
+    strcpy(vJogadores[6].nome," Fabiana ");
+    strcpy(vJogadores[7].nome," Gonçalo ");
+    strcpy(vJogadores[8].nome," Hilario ");
+    strcpy(vJogadores[9].nome," Isabela ");
     strcpy(vJogadores[10].nome," Joaquim ");
-    for (int j=1;j<=10;j++) vJogadores[j].nCartas=0; // desnecessário
+    for (int j=1;j<=nJogadores;j++) vJogadores[j].nCartas=0; // desnecessário
 }
 
 /// FUNÇÕES DE ESCRITA
 
 /// Função que escreve uma carta
-void escreverCarta(t_carta b[])
+void escreveCarta(t_carta carta)
 {
-    int i=1;
-    if (b[i].cor == 'R')
+ switch (carta.cor)
+ {
+ case 'R':
     {
-        setForegroundColor(1, 1, 1, 1);
-        setBackgroundColor(0, 1, 0, 0);
-        printf("%c", b[i].face);
-        setForegroundColor(1, 1, 1, 1);
-        setBackgroundColor(0, 0, 0, 0);
+        setForegroundColor(1,1,1,1); // Foreground Branco
+        setBackgroundColor(0,1,0,0); // Background Vermelho
+        break;
+        printf("%d", carta.face);
     }
-    else
+ case 'G':
     {
-        if(b[i].cor == 'G')
-        {
-            setForegroundColor(1, 1, 1, 1);
-            setBackgroundColor(0, 0, 1, 0);
-            printf("%c", b[i].face);
-            setForegroundColor(1, 1, 1, 1);
-            setBackgroundColor(0, 0, 0, 0);
-        }
-        else
-        {
-            if(b[i].cor == 'B')
-            {
-                 setForegroundColor(1, 1, 1, 1);
-                 setBackgroundColor(0, 0, 0, 1);
-                 printf("%c", b[i].face);
-                 setForegroundColor(1, 1, 1, 1);
-                 setBackgroundColor(0, 0, 0, 0);
-            }
-            else
-            {
-                 setForegroundColor(1, 1, 1, 1);
-                 setBackgroundColor(0, 1, 1, 0);
-                 printf("%c", b[i].face);
-                 setForegroundColor(1, 1, 1, 1);
-                 setBackgroundColor(0, 0, 0, 0);
-            }
-        }
+        setForegroundColor(1,1,1,1); // Foreground Branco
+        setBackgroundColor(0,0,1,0); // Background Verde
+        printf("%d", carta.face);
+        break;
     }
+case 'B':
+    {
+        setForegroundColor(1,1,1,1); // Foreground Branco
+        setBackgroundColor(0,0,0,1); // Background Azul
+        printf("%d", carta.face);
+        break;
+    }
+case 'Y':
+    {
+        setForegroundColor(1,1,1,1); // Foreground Branco
+        setBackgroundColor(0,1,1,0); // Background Amarelo
+        printf("%d", carta.face);
+        break;
+    }
+ }
 }
-
 /// Função que escreve um vetor de cartas
-
 
 /// Função que escreve o monte (apresenta o número de cartas que estão no monte, e não as cartas que lá estão)
 
@@ -160,11 +151,21 @@ void escreverCarta(t_carta b[])
 
 
 /// Função que escreve um jogador: nome + cartas da mão
+void escreveJogador(t_jogador *vJogadores[]){
+    int i;
+     printf("%s", vJogadores[i]->nome);
+     escreverCartas();printf("\n");
 
+}
 
 /// Função que escreve todos os jogadores
+void escreverJogadores(t_jogador vJogador[]){
 
+    int i;
+    for(i=1;i<=nJogadores;i++)
+         escreveJogador(vJogador[nJogadores]);
 
+}
 
 /// FUNÇÕES NECESSÁRIAS AO FUNCIONAMENTO DO JOGO
 
@@ -177,7 +178,14 @@ void escreverCarta(t_carta b[])
 
 /// Função que verifica se uma carta "encaixa" na outra
 ///devolve 1 se ca carta 1 'encaixa' na carta 2 (verifica se carta 1 e carta 2 têm a mesma cor ou a mesma face)
-
+int encaixarCarta (t_carta carta1, t_carta carta2)
+{
+    if(carta1.cor == carta2.cor || carta1.face == carta2.face){
+            return 1;
+    }else{
+     return 0;
+    }
+}
 
 ///Função que devolve o índice do próximo jogador a jogar
 
@@ -209,13 +217,13 @@ int main()
 
 
     criarJogadores(vJogadores);
-    criarBaralho(b1);
-    criarBaralho(b2);
-    juntarBaralhos(b1,b2,baralho);
-    baralharCartas(baralho,nTotalCartas);
-    escreverCarta(baralho);
-    escreverVetorCartas(baralho);
-    escreverJogadores(vJogadores);
+//    criarBaralho(b1);
+//    criarBaralho(b2);
+//    juntarBaralhos(b1,b2,baralho);
+//    baralharCartas(baralho,nTotalCartas);
+//    escreverCarta(b1[1]);
+//    escreverVetorCartas(baralho);
+   escreverJogadores(vJogadores);
 
 
     ///Acrescentar as chamadas às funções desenvolvidas, para fazer funcionar o Jogo do UNO
