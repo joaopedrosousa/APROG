@@ -107,7 +107,48 @@ void criarJogadores(t_jogador vJogadores[])
 /// FUNÇÕES DE ESCRITA
 
 /// Função que escreve uma carta
-
+void escreverCarta(t_carta b[])
+{
+    int i=1;
+    if (b[i].cor == 'R')
+    {
+        setForegroundColor(1, 1, 1, 1);
+        setBackgroundColor(0, 1, 0, 0);
+        printf("%c", b[i].face);
+        setForegroundColor(1, 1, 1, 1);
+        setBackgroundColor(0, 0, 0, 0);
+    }
+    else
+    {
+        if(b[i].cor == 'G')
+        {
+            setForegroundColor(1, 1, 1, 1);
+            setBackgroundColor(0, 0, 1, 0);
+            printf("%c", b[i].face);
+            setForegroundColor(1, 1, 1, 1);
+            setBackgroundColor(0, 0, 0, 0);
+        }
+        else
+        {
+            if(b[i].cor == 'B')
+            {
+                 setForegroundColor(1, 1, 1, 1);
+                 setBackgroundColor(0, 0, 0, 1);
+                 printf("%c", b[i].face);
+                 setForegroundColor(1, 1, 1, 1);
+                 setBackgroundColor(0, 0, 0, 0);
+            }
+            else
+            {
+                 setForegroundColor(1, 1, 1, 1);
+                 setBackgroundColor(0, 1, 1, 0);
+                 printf("%c", b[i].face);
+                 setForegroundColor(1, 1, 1, 1);
+                 setBackgroundColor(0, 0, 0, 0);
+            }
+        }
+    }
+}
 
 /// Função que escreve um vetor de cartas
 
@@ -170,8 +211,12 @@ int main()
     criarJogadores(vJogadores);
     criarBaralho(b1);
     criarBaralho(b2);
-    //juntarBaralhos(b1,b2,baralho);
+    juntarBaralhos(b1,b2,baralho);
     baralharCartas(baralho,nTotalCartas);
+    escreverCarta(baralho);
+    escreverVetorCartas(baralho);
+    escreverJogadores(vJogadores);
+
 
     ///Acrescentar as chamadas às funções desenvolvidas, para fazer funcionar o Jogo do UNO
 
