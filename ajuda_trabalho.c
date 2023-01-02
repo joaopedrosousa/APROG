@@ -79,7 +79,11 @@ void criarBaralho(t_carta b[])
     }
 }
 
+<<<<<<< HEAD
 /// Funï¿½ï¿½o que junta dois baralhos de 40 cartas num ï¿½nico vetor com 80 cartas
+=======
+/// Função que junta dois baralhos de 40 cartas num único vetor com 80 cartas
+>>>>>>> pre-realease
 void juntarBaralhos(int *baralho1, int *baralho2, int *baralho) {
   for (int i = 0; i < 40; i++) {
     baralho[i] = baralho1[i];
@@ -98,6 +102,7 @@ void criarJogadores(t_jogador vJogadores[])
     strcpy(vJogadores[4].nome," Daniela ");
     strcpy(vJogadores[5].nome," Eduardo ");
     strcpy(vJogadores[6].nome," Fabiana ");
+<<<<<<< HEAD
     strcpy(vJogadores[7].nome," Gonï¿½alo ");
     strcpy(vJogadores[8].nome," Hilario ");
     strcpy(vJogadores[9].nome," Isabela ");
@@ -152,6 +157,55 @@ void escreveCartas(t_carta b[])  //ainda tenho de corrigir a maioria das funÃ§Ãµ
             escreveCarta(b[i]);
         }
 }
+=======
+    strcpy(vJogadores[7].nome," Gonçalo ");
+    strcpy(vJogadores[8].nome," Hilario ");
+    strcpy(vJogadores[9].nome," Isabela ");
+    strcpy(vJogadores[10].nome," Joaquim ");
+    for (int j=1;j<=nJogadores;j++) vJogadores[j].nCartas=0; // desnecessário
+}
+
+/// FUNÇÕES DE ESCRITA
+
+/// Função que escreve uma carta
+void escreveCarta(t_carta carta)
+{
+ switch (carta.cor)
+ {
+ case 'R':
+    {
+        setForegroundColor(1,1,1,1); // Foreground Branco
+        setBackgroundColor(0,1,0,0); // Background Vermelho
+        break;
+        printf("%d", carta.face);
+    }
+ case 'G':
+    {
+        setForegroundColor(1,1,1,1); // Foreground Branco
+        setBackgroundColor(0,0,1,0); // Background Verde
+        printf("%d", carta.face);
+        break;
+    }
+case 'B':
+    {
+        setForegroundColor(1,1,1,1); // Foreground Branco
+        setBackgroundColor(0,0,0,1); // Background Azul
+        printf("%d", carta.face);
+        break;
+    }
+case 'Y':
+    {
+        setForegroundColor(1,1,1,1); // Foreground Branco
+        setBackgroundColor(0,1,1,0); // Background Amarelo
+        printf("%d", carta.face);
+        break;
+    }
+ }
+}
+/// Função que escreve um vetor de cartas
+
+/// Função que escreve o monte (apresenta o número de cartas que estão no monte, e não as cartas que lá estão)
+>>>>>>> pre-realease
 
 /// Funï¿½ï¿½o que escreve o monte (apresenta o nï¿½mero de cartas que estï¿½o no monte, e nï¿½o as cartas que lï¿½ estï¿½o)
 void escreveMonte(t_carta *monte[]); //utilisei o num 11 como "nÃ£o carta" porque nao podemos alterar o comprimento de um vetor assim tao facilmente, vejam se concordam
@@ -168,6 +222,7 @@ void escreveMonte(t_carta *monte[]); //utilisei o num 11 como "nÃ£o carta" porqu
 
 
 
+<<<<<<< HEAD
 /// Funï¿½ï¿½o que escreve a mesa (escreve as cartas que estï¿½o na mesa)
 void escreveMesa(t_carta *mesa[])  //ainda tenho de rever a maioria das funÃ§Ãµes que escrevi, e tambÃ©m de verificar a correta utilizaÃ§Ã£o de apontadores  - M
 {
@@ -194,6 +249,24 @@ void escreverJogadores(t_jogador *vJogador[]){
     int i;
     for(i=1;i<=nJogadores;i++)
          escreveJogador(vJogador[nJogadores]);
+=======
+/// Função que escreve um jogador: nome + cartas da mão
+void escreveJogador(t_jogador *vJogadores[]){
+    int i;
+     printf("%s", vJogadores[i]->nome);
+     escreverCartas();printf("\n");
+
+}
+
+/// Função que escreve todos os jogadores
+void escreverJogadores(t_jogador vJogador[]){
+
+    int i;
+    for(i=1;i<=nJogadores;i++)
+         escreveJogador(vJogador[nJogadores]);
+
+}
+>>>>>>> pre-realease
 
 }
 
@@ -205,9 +278,14 @@ void escreverJogadores(t_jogador *vJogador[]){
 /// Funï¿½ï¿½o que verifica se algum jogador acabou o jogo
 ///(devolve o ï¿½ndice do jogador que tem 0 cartas - se todos tï¿½m mais que 0 cartas, devolve 0).
 
+<<<<<<< HEAD
 
 /// Funï¿½ï¿½o que verifica se uma carta "encaixa" na outra
 ///devolve 1 se ca carta 1 'encaixa' na carta 2 (verifica se carta 1 e carta 2 tï¿½m a mesma cor ou a mesma face)
+=======
+/// Função que verifica se uma carta "encaixa" na outra
+///devolve 1 se ca carta 1 'encaixa' na carta 2 (verifica se carta 1 e carta 2 têm a mesma cor ou a mesma face)
+>>>>>>> pre-realease
 int encaixarCarta (t_carta carta1, t_carta carta2)
 {
     if(carta1.cor == carta2.cor || carta1.face == carta2.face){
