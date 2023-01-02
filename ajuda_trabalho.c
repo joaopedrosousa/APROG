@@ -242,14 +242,10 @@ void escreverJogadores(t_jogador *vJogador[]){
 /// Funï¿½ï¿½o que verifica se algum jogador acabou o jogo
 ///(devolve o ï¿½ndice do jogador que tem 0 cartas - se todos tï¿½m mais que 0 cartas, devolve 0).
 
-<<<<<<< HEAD
 
 /// Funï¿½ï¿½o que verifica se uma carta "encaixa" na outra
 ///devolve 1 se ca carta 1 'encaixa' na carta 2 (verifica se carta 1 e carta 2 tï¿½m a mesma cor ou a mesma face)
-=======
-/// Função que verifica se uma carta "encaixa" na outra
-///devolve 1 se ca carta 1 'encaixa' na carta 2 (verifica se carta 1 e carta 2 têm a mesma cor ou a mesma face)
->>>>>>> pre-realease
+
 int encaixarCarta (t_carta carta1, t_carta carta2)
 {
     if(carta1.cor == carta2.cor || carta1.face == carta2.face){
